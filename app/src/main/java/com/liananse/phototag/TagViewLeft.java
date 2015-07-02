@@ -36,7 +36,7 @@ public class TagViewLeft extends TagView {
         TagModel tagModel = new TagModel();
         tagModel.type = TagModel.TYPE_NORMAL;
         tagModel.position = new Point(50, 50);
-        tagModel.name = "liananse";
+        tagModel.name = "tag left";
 
         setTagData(tagModel);
     }
