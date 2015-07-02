@@ -9,16 +9,23 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
 
-    <com.liananse.phototag.TagViewRight
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true">
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
 
-    </com.liananse.phototag.TagViewRight>
+        <com.liananse.phototag.TagViewLeft
+            android:id="@+id/tag_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </com.liananse.phototag.TagViewLeft>
+    </RelativeLayout>
 
 </RelativeLayout>

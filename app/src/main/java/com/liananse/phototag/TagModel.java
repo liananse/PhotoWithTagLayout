@@ -9,21 +9,27 @@ import java.io.Serializable;
  */
 public class TagModel implements Serializable {
 
-    public static final int TYPE_NORMAL = 1;
-    public static final int TYPE_LOCATION = 2;
-    public static final int TYPE_BRAND = 3;
-    public static final int TYPE_TOPIC = 4;
-
-    public int type;
-    public Point position;
     public String name;
-
+    public Type type = Type.NORMAL;
+    public Direction direction = Direction.LEFT;
+    public Point position;
     public TagModel () {
 
     }
-    public TagModel(int type, Point position, String name) {
-        this.type = type;
-        this.position = position;
+
+    public TagModel(String name, Type type, Direction direction, Point position) {
         this.name = name;
+        this.type = type;
+        this.direction = direction;
+        this.position = position;
     }
+
+    public enum Type {
+        NORMAL, LOCATION, BRAND, TOPIC
+    }
+
+    public enum Direction {
+        LEFT, RIGHT
+    }
+
 }
