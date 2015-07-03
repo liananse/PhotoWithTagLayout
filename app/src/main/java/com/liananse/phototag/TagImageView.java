@@ -1,6 +1,7 @@
 package com.liananse.phototag;
 
 import android.content.Context;
+import android.graphics.Point;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
@@ -67,7 +68,6 @@ public class TagImageView extends RelativeLayout implements PhotoViewAttacher.On
     @Override
     public void onMatrixChanged(RectF rect) {
         if (mTagBox.getChildCount() > 0) {
-
             View childView;
             for (int i = 0; i < mTagBox.getChildCount(); i++) {
                 childView = mTagBox.getChildAt(i);
@@ -75,6 +75,14 @@ public class TagImageView extends RelativeLayout implements PhotoViewAttacher.On
                 if (childView instanceof TagView) {
                     newPositionX = (int) (((TagView) childView).getTagModel().position.x * scale) + (int) rect.left;
                     newPositionY = (int) (((TagView) childView).getTagModel().position.y * scale) + (int) rect.top;
+
+                    // 如果相对ImageView的边界
+                    if (((TagView) childView).getTagModel().positionOfImage == null) {
+                        Point positionOfImage = new Point((int) rect.left, (int) rect.top);
+                        ((TagView) childView).getTagModel().positionOfImage = positionOfImage;
+                    }
+                    newPositionX = newPositionX - (int) (((TagView) childView).getTagModel().positionOfImage.x * scale);
+                    newPositionY = newPositionY - (int) (((TagView) childView).getTagModel().positionOfImage.y * scale);
 
                     if (((TagView) childView).getTagModel().direction == TagModel.Direction.LEFT) {
                         childView.setTranslationX(newPositionX - mTagViewPointSize / 2);

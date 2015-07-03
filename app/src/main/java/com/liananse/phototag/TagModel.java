@@ -13,15 +13,9 @@ public class TagModel implements Serializable {
     public Type type = Type.NORMAL;
     public Direction direction = Direction.LEFT;
     public Point position;
+    public Point positionOfImage;
     public TagModel () {
 
-    }
-
-    public TagModel(String name, Type type, Direction direction, Point position) {
-        this.name = name;
-        this.type = type;
-        this.direction = direction;
-        this.position = position;
     }
 
     public enum Type {
