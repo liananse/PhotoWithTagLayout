@@ -2,31 +2,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
     tools:context=".MainActivity">
 
-
-    <!--<RelativeLayout-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_centerInParent="true">-->
-        <!--<ImageView-->
-            <!--android:id="@+id/imageView"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_centerInParent="true" />-->
-
-        <!--<com.liananse.phototag.TagViewRight-->
-            <!--android:id="@+id/tag_view"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content">-->
-
-        <!--</com.liananse.phototag.TagViewRight>-->
-    <!--</RelativeLayout>-->
-
-    <com.liananse.phototag.TagImageView
-        android:id="@+id/tag_image_view"
+    <com.liananse.ptrefreshlayout.PTRefreshLayout
+        android:id="@+id/refresh_layout"
         android:layout_width="match_parent"
-        android:layout_height="300dp">
-    </com.liananse.phototag.TagImageView>
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent" />
+    </com.liananse.ptrefreshlayout.PTRefreshLayout>
 </RelativeLayout>

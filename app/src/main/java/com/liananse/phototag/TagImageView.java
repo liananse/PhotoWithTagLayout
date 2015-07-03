@@ -52,8 +52,8 @@ public class TagImageView extends RelativeLayout implements PhotoViewAttacher.On
 
     public void setTagList(List<TagModel> tagModels) {
         mTagBox.removeAllViews();
-        LayoutParams layoutParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         for (TagModel tagModel : tagModels) {
+            LayoutParams layoutParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
             TagView tagView;
             if (tagModel.direction == TagModel.Direction.LEFT) {
                 tagView = new TagViewLeft(getContext());

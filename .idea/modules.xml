@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/PhotoTag.iml" filepath="$PROJECT_DIR$/PhotoTag.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/photoview/photoview.iml" filepath="$PROJECT_DIR$/photoview/photoview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ptrefreshlayout/ptrefreshlayout.iml" filepath="$PROJECT_DIR$/ptrefreshlayout/ptrefreshlayout.iml" />
     </modules>
   </component>
 </project>

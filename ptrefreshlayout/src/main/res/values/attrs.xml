@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="PTRefreshLayout">
+        <attr name="header_height" format="dimension" />
+        <attr name="header_refresh_height" format="dimension" />
+    </declare-styleable>
+</resources>
