@@ -1,15 +1,17 @@
 package com.liananse.phototag;
 
+import android.graphics.Point;
 import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
 import com.liananse.photoview.PhotoViewAttacher;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements PhotoViewAttacher.OnMatrixChangedListener {
 
@@ -20,28 +22,59 @@ public class MainActivity extends AppCompatActivity implements PhotoViewAttacher
     private int mTagViewHeight;
     private int mTagViewWidth;
     private int mTagViewPointSize;
+
+    private TagImageView mTagImageView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mTagViewPointSize = getResources().getDimensionPixelOffset(R.dimen.tag_view_point_size);
+//        mTagViewPointSize = getResources().getDimensionPixelOffset(R.dimen.tag_view_point_size);
+//
+//        mImageView = (ImageView) findViewById(R.id.imageView);
+//        mTagView = (TagView) findViewById(R.id.tag_view);
+//
+//        // Set the Drawable displayed
+//        Drawable bitmap = getResources().getDrawable(R.drawable.wallpaper);
+//        mImageView.setImageDrawable(bitmap);
+//
+//        // Attach a PhotoViewAttacher, which takes care of all of the zooming functionality.
+//        mAttacher = new PhotoViewAttacher(mImageView);
+//        mAttacher.setOnMatrixChangeListener(this);
+//
+//        mTagView.measure(0, 0);
+//        mTagViewWidth = mTagView.getMeasuredWidth();
+//        mTagViewHeight = mTagView.getMeasuredHeight();
+//
+//        Log.d("MainActivity", "tagViewWidth " + mTagViewWidth + " tagViewHeight " + mTagViewHeight);
 
-        mImageView = (ImageView) findViewById(R.id.imageView);
-        mTagView = (TagView) findViewById(R.id.tag_view);
+        mTagImageView = (TagImageView) findViewById(R.id.tag_image_view);
 
-        // Set the Drawable displayed
-        Drawable bitmap = getResources().getDrawable(R.drawable.wallpaper);
-        mImageView.setImageDrawable(bitmap);
 
-        // Attach a PhotoViewAttacher, which takes care of all of the zooming functionality.
-        mAttacher = new PhotoViewAttacher(mImageView);
-        mAttacher.setOnMatrixChangeListener(this);
+        List<TagModel> tagModelList = new ArrayList<>();
 
-        mTagView.measure(0, 0);
-        mTagViewWidth = mTagView.getMeasuredWidth();
-        mTagViewHeight = mTagView.getMeasuredHeight();
+        TagModel tagModel1 = new TagModel();
+        tagModel1.type = TagModel.Type.NORMAL;
+        tagModel1.position = new Point(300, 200);
+        tagModel1.direction = TagModel.Direction.LEFT;
+        tagModel1.name = "tag1 left";
+        tagModelList.add(tagModel1);
 
-        Log.d("MainActivity", "tagViewWidth " + mTagViewWidth + " tagViewHeight " + mTagViewHeight);
+        TagModel tagModel2 = new TagModel();
+        tagModel2.type = TagModel.Type.NORMAL;
+        tagModel2.position = new Point(300, 300);
+        tagModel2.direction = TagModel.Direction.LEFT;
+        tagModel2.name = "tag2 left";
+        tagModelList.add(tagModel2);
+
+        TagModel tagModel3 = new TagModel();
+        tagModel3.type = TagModel.Type.NORMAL;
+        tagModel3.position = new Point(300, 300);
+        tagModel3.direction = TagModel.Direction.RIGHT;
+        tagModel3.name = "tag3";
+        tagModelList.add(tagModel3);
+
+        mTagImageView.setTagList(tagModelList);
+
     }
 
     @Override
@@ -68,7 +101,13 @@ public class MainActivity extends AppCompatActivity implements PhotoViewAttacher
 
     @Override
     public void onMatrixChanged(RectF rect) {
-        mTagView.setTranslationX((int) rect.centerX() - mTagViewPointSize / 2);
-        mTagView.setTranslationY((int) rect.centerY() - mTagViewHeight / 2);
+
+//        // left
+////        mTagView.setTranslationX((int) rect.centerX() - mTagViewPointSize / 2);
+////        mTagView.setTranslationY((int) rect.centerY() - mTagViewHeight / 2);
+//
+//        // right
+//        mTagView.setTranslationX((int) rect.centerX() - mTagViewWidth + mTagViewPointSize / 2);
+//        mTagView.setTranslationY((int) rect.centerY() - mTagViewHeight / 2);
     }
 }
