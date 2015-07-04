@@ -1,7 +1,6 @@
 package com.liananse.phototag;
 
 import android.content.Context;
-import android.graphics.Point;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,14 +29,7 @@ public class TagViewLeft extends TagView {
         this.mTagShadowIcon1 = ((ImageView) findViewById(R.id.tag_shadow_icon1));
         this.mTagShadowIcon2 = ((ImageView) findViewById(R.id.tag_shadow_icon2));
         this.mTagPointerIcon = ((ImageView) findViewById(R.id.tag_pointer_icon));
-        setTagVisibility(VISIBLE);
 
-
-        TagModel tagModel = new TagModel();
-        tagModel.type = TagModel.Type.NORMAL;
-        tagModel.position = new Point(50, 50);
-        tagModel.name = "tag left";
-
-        setTagData(tagModel);
+        startTagPointerIconAnimation(mTagPointerIcon);
     }
 }

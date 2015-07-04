@@ -19,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
 
     private PTRefreshLayout mPTRefreshLayout;
     private RecyclerView mRecyclerView;
+
+    private List<List<TagModel>> mTagList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +31,11 @@ public class MainActivity extends AppCompatActivity {
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        Random r = new Random();
+        mTagList = new ArrayList<>();
+        for (int i = 0; i < 15; i++) {
+            mTagList.add(getTagModelList(i+"", (r.nextInt(5) + 1)));
+        }
         mRecyclerView.setLayoutManager(linearLayoutManager);
         mRecyclerView.setAdapter(new RecyclerView.Adapter() {
 
@@ -37,21 +44,18 @@ public class MainActivity extends AppCompatActivity {
                 View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
                 v.setBackgroundColor(getResources().getColor(android.R.color.transparent));
                 ViewHolder holder = new ViewHolder(v);
-                holder.tagImageView = (TagImageView) v.findViewById(R.id.tag_image_view);
-
+                holder.tagImageView = (TagContainer) v.findViewById(R.id.tag_image_view);
                 return holder;
             }
 
             @Override
             public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-                Random random = new Random();
-                // taglist不能在这里随机
-                ((ViewHolder) holder).tagImageView.setTagList(getTagModelList(position + "", random.nextInt(5) + 1));
+                ((ViewHolder) holder).tagImageView.setTagList(mTagList.get(position));
             }
 
             @Override
             public int getItemCount() {
-                return 30;
+                return 15;
             }
         });
     }
@@ -73,9 +77,11 @@ public class MainActivity extends AppCompatActivity {
         return tagModelList;
     }
 
+
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        TagImageView tagImageView;
+        TagContainer tagImageView;
 
         public ViewHolder(View v) {
             super(v);

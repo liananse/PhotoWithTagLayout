@@ -3,17 +3,18 @@ package com.liananse.phototag;
 import android.content.Context;
 import android.os.Handler;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 /**
  * Created by wangzenghui on 15/7/2.
  */
-public class TagView extends RelativeLayout {
+public class TagView extends LinearLayout {
     public static final int VISIBLE = 0;
     public static final int GONE = 8;
     /**
@@ -35,10 +36,6 @@ public class TagView extends RelativeLayout {
     private Animation mTagShadowIcon2Anim;
     private Animation mTagPointerIconAnim;
 
-    /**
-     * 标签是否显示
-     */
-    private boolean isShowing = false;
     private Handler mHandler = new Handler();
     /**
      * 标签内容
@@ -55,6 +52,8 @@ public class TagView extends RelativeLayout {
 
     public TagView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        this.setOrientation(HORIZONTAL);
+        this.setGravity(Gravity.CENTER_VERTICAL);
         initAnimation(context);
     }
 
@@ -73,7 +72,6 @@ public class TagView extends RelativeLayout {
         this.mTagShadowIcon1.clearAnimation();
         this.mTagShadowIcon2.clearAnimation();
         this.mTagPointerIcon.clearAnimation();
-        this.isShowing = false;
     }
 
     public final void startTagShadowIcon1Animation(final View view) {
@@ -88,9 +86,6 @@ public class TagView extends RelativeLayout {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                if (!isShowing) {
-                    return;
-                }
                 mHandler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -117,9 +112,6 @@ public class TagView extends RelativeLayout {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                if (!isShowing) {
-                    return;
-                }
                 mHandler.postDelayed(new Runnable() {
 
                     @Override
@@ -147,9 +139,6 @@ public class TagView extends RelativeLayout {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                if (!isShowing) {
-                    return;
-                }
                 mHandler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -166,18 +155,11 @@ public class TagView extends RelativeLayout {
 
     public void setTagVisibility(int visibility) {
         if (visibility == TagView.VISIBLE) {
-            if (isShowing) {
-                return;
-            }
+            setVisibility(View.VISIBLE);
             clearTagAnimation();
-            isShowing = true;
             startTagPointerIconAnimation(mTagPointerIcon);
         } else if (visibility == TagView.GONE) {
-            if (!isShowing) {
-                return;
-            }
-            clearTagAnimation();
-            isShowing = false;
+            setVisibility(View.GONE);
         }
     }
 
