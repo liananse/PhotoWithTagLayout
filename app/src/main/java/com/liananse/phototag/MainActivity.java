@@ -1,6 +1,8 @@
 package com.liananse.phototag;
 
+import android.graphics.Canvas;
 import android.graphics.Point;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -33,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         Random r = new Random();
         mTagList = new ArrayList<>();
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 20; i++) {
             mTagList.add(getTagModelList(i+"", (r.nextInt(5) + 1)));
         }
         mRecyclerView.setLayoutManager(linearLayoutManager);
@@ -44,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
                 View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
                 v.setBackgroundColor(getResources().getColor(android.R.color.transparent));
                 ViewHolder holder = new ViewHolder(v);
-                holder.tagImageView = (TagContainer) v.findViewById(R.id.tag_image_view);
+                holder.tagImageView = (TagContainer2) v.findViewById(R.id.tag_image_view);
                 return holder;
             }
 
@@ -55,7 +57,20 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public int getItemCount() {
-                return 15;
+                return 20;
+            }
+        });
+
+        mRecyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
+            @Override
+            public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
+                super.onDraw(c, parent, state);
+            }
+
+            @Override
+            public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+                int padding = (int) 10;
+                outRect.set(padding, padding, padding, padding);
             }
         });
     }
@@ -81,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        TagContainer tagImageView;
+        TagContainer2 tagImageView;
 
         public ViewHolder(View v) {
             super(v);

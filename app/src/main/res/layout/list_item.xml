@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.liananse.phototag.TagContainer xmlns:android="http://schemas.android.com/apk/res/android"
+<com.liananse.phototag.TagContainer2 xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/tag_image_view"
     android:layout_width="match_parent"
+    android:background="@android:color/transparent"
     android:layout_height="300dp">
 
-</com.liananse.phototag.TagContainer>
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/wallpaper"
+        android:scaleType="centerCrop" />
+
+</com.liananse.phototag.TagContainer2>

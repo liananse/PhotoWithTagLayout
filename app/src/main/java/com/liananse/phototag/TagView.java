@@ -90,7 +90,7 @@ public class TagView extends LinearLayout {
                     @Override
                     public void run() {
                         view.clearAnimation();
-                        mTagShadowIcon1Anim.reset();
+//                        mTagShadowIcon1Anim.reset();
                         startTagShadowIcon2Animation(mTagShadowIcon2);
                     }
                 }, 10);
@@ -117,7 +117,7 @@ public class TagView extends LinearLayout {
                     @Override
                     public void run() {
                         view.clearAnimation();
-                        mTagShadowIcon2Anim.reset();
+//                        mTagShadowIcon2Anim.reset();
                         startTagPointerIconAnimation(mTagPointerIcon);
                     }
                 }, 10);
@@ -143,7 +143,7 @@ public class TagView extends LinearLayout {
                     @Override
                     public void run() {
                         view.clearAnimation();
-                        mTagPointerIconAnim.reset();
+//                        mTagPointerIconAnim.reset();
                         startTagShadowIcon1Animation(mTagShadowIcon1);
                     }
                 }, 10);
@@ -156,8 +156,6 @@ public class TagView extends LinearLayout {
     public void setTagVisibility(int visibility) {
         if (visibility == TagView.VISIBLE) {
             setVisibility(View.VISIBLE);
-            clearTagAnimation();
-            startTagPointerIconAnimation(mTagPointerIcon);
         } else if (visibility == TagView.GONE) {
             setVisibility(View.GONE);
         }
@@ -168,6 +166,9 @@ public class TagView extends LinearLayout {
         if (mTagModel != null && mTagContent != null) {
             this.mTagContent.setText(tagModel.name);
         }
+        clearTagAnimation();
+        startTagPointerIconAnimation(mTagPointerIcon);
+        this.invalidate();
     }
 
     public TagModel getTagModel() {
