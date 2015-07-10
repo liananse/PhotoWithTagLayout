@@ -30,6 +30,6 @@ public class TagViewLeft extends TagView {
         this.mTagShadowIcon2 = ((ImageView) findViewById(R.id.tag_shadow_icon2));
         this.mTagPointerIcon = ((ImageView) findViewById(R.id.tag_pointer_icon));
 
-        startTagPointerIconAnimation(mTagPointerIcon);
+        startTagPointerIconAnimation();
     }
 }

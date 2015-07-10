@@ -64,17 +64,6 @@ public class TagView extends LinearLayout {
      */
     private void initAnimation(Context context) {
         mTagShadowIcon1Anim = AnimationUtils.loadAnimation(context, R.anim.tag_shadow_anim);
-        mTagShadowIcon2Anim = AnimationUtils.loadAnimation(context, R.anim.tag_shadow_anim);
-        mTagPointerIconAnim = AnimationUtils.loadAnimation(context, R.anim.tag_white_anim);
-    }
-
-    public final void clearTagAnimation() {
-        this.mTagShadowIcon1.clearAnimation();
-        this.mTagShadowIcon2.clearAnimation();
-        this.mTagPointerIcon.clearAnimation();
-    }
-
-    public final void startTagShadowIcon1Animation(final View view) {
         mTagShadowIcon1Anim.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
@@ -89,18 +78,15 @@ public class TagView extends LinearLayout {
                 mHandler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        view.clearAnimation();
-//                        mTagShadowIcon1Anim.reset();
-                        startTagShadowIcon2Animation(mTagShadowIcon2);
+                        mTagShadowIcon1.clearAnimation();
+                        mTagShadowIcon1Anim.reset();
+                        startTagShadowIcon2Animation();
                     }
                 }, 10);
             }
         });
-        view.clearAnimation();
-        view.startAnimation(mTagShadowIcon1Anim);
-    }
 
-    public final void startTagShadowIcon2Animation(final View view) {
+        mTagShadowIcon2Anim = AnimationUtils.loadAnimation(context, R.anim.tag_shadow_anim);
         mTagShadowIcon2Anim.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
@@ -116,18 +102,15 @@ public class TagView extends LinearLayout {
 
                     @Override
                     public void run() {
-                        view.clearAnimation();
-//                        mTagShadowIcon2Anim.reset();
-                        startTagPointerIconAnimation(mTagPointerIcon);
+                        mTagShadowIcon2.clearAnimation();
+                        mTagShadowIcon2Anim.reset();
+                        startTagPointerIconAnimation();
                     }
                 }, 10);
             }
         });
-        view.clearAnimation();
-        view.startAnimation(mTagShadowIcon2Anim);
-    }
 
-    public final void startTagPointerIconAnimation(final View view) {
+        mTagPointerIconAnim = AnimationUtils.loadAnimation(context, R.anim.tag_white_anim);
         mTagPointerIconAnim.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
@@ -142,15 +125,34 @@ public class TagView extends LinearLayout {
                 mHandler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        view.clearAnimation();
-//                        mTagPointerIconAnim.reset();
-                        startTagShadowIcon1Animation(mTagShadowIcon1);
+                        mTagPointerIcon.clearAnimation();
+                        mTagPointerIconAnim.reset();
+                        startTagShadowIcon1Animation();
                     }
                 }, 10);
             }
         });
-        view.clearAnimation();
-        view.startAnimation(mTagPointerIconAnim);
+    }
+
+    public void clearTagAnimation() {
+        this.mTagShadowIcon1.clearAnimation();
+        this.mTagShadowIcon2.clearAnimation();
+        this.mTagPointerIcon.clearAnimation();
+    }
+
+    public void startTagShadowIcon1Animation() {
+//        mTagShadowIcon1.clearAnimation();
+        mTagShadowIcon1.startAnimation(mTagShadowIcon1Anim);
+    }
+
+    public void startTagShadowIcon2Animation() {
+//        mTagShadowIcon2.clearAnimation();
+        mTagShadowIcon2.startAnimation(mTagShadowIcon2Anim);
+    }
+
+    public void startTagPointerIconAnimation() {
+//        mTagPointerIcon.clearAnimation();
+        mTagPointerIcon.startAnimation(mTagPointerIconAnim);
     }
 
     public void setTagVisibility(int visibility) {
@@ -166,9 +168,8 @@ public class TagView extends LinearLayout {
         if (mTagModel != null && mTagContent != null) {
             this.mTagContent.setText(tagModel.name);
         }
-        clearTagAnimation();
-        startTagPointerIconAnimation(mTagPointerIcon);
-        this.invalidate();
+//        clearTagAnimation();
+        startTagPointerIconAnimation();
     }
 
     public TagModel getTagModel() {

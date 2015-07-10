@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,11 +24,13 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
 
     private List<List<TagModel>> mTagList;
+
+    private int i = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        i = 0;
         mPTRefreshLayout = (PTRefreshLayout) findViewById(R.id.refresh_layout);
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
@@ -47,17 +50,26 @@ public class MainActivity extends AppCompatActivity {
                 v.setBackgroundColor(getResources().getColor(android.R.color.transparent));
                 ViewHolder holder = new ViewHolder(v);
                 holder.tagImageView = (TagContainer2) v.findViewById(R.id.tag_image_view);
+                holder.tagImageView.setTag(i + "");
+                i++;
                 return holder;
             }
 
             @Override
             public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
                 ((ViewHolder) holder).tagImageView.setTagList(mTagList.get(position));
+
+                Log.d("Tag", "onBindViewHolder main " + ((ViewHolder) holder).tagImageView.getTag() + " p " + position);
             }
 
             @Override
             public int getItemCount() {
                 return 20;
+            }
+
+            @Override
+            public void setHasStableIds(boolean hasStableIds) {
+                super.setHasStableIds(hasStableIds);
             }
         });
 
